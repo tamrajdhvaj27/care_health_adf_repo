@@ -18,16 +18,16 @@
             }
           },
           "sink": {
-            "type": "ParquetSink",
+            "type": "DelimitedTextSink",
             "formatSettings": {
-              "type": "ParquetWriteSettings",
-              "enableVertiParquet": true
+              "type": "DelimitedTextWriteSettings",
+              "fileExtension": ".txt"
             },
             "storeSettings": {
               "type": "LakehouseWriteSettings"
             },
             "datasetSettings": {
-              "type": "Parquet",
+              "type": "DelimitedText",
               "typeProperties": {
                 "location": {
                   "type": "LakehouseLocation",
@@ -40,15 +40,18 @@
                     "type": "Expression"
                   }
                 },
-                "compressionCodec": "snappy"
+                "columnDelimiter": ",",
+                "quoteChar": "\"",
+                "escapeChar": "\\",
+                "firstRowAsHeader": true
               },
               "schema": [],
               "linkedService": {
-                "name": "LH_Containers",
+                "name": "LH_HealthCareProject",
                 "properties": {
                   "type": "Lakehouse",
                   "typeProperties": {
-                    "artifactId": "95c61a98-1b70-9884-4207-892748744a62",
+                    "artifactId": "4974cca0-9c60-b857-4c3f-3968d469d422",
                     "workspaceId": "00000000-0000-0000-0000-000000000000",
                     "rootFolder": "Files"
                   },
@@ -82,7 +85,7 @@
     "parameters": {
       "container": {
         "type": "string",
-        "defaultValue": "landing"
+        "defaultValue": "Landing"
       },
       "folder": {
         "type": "string",

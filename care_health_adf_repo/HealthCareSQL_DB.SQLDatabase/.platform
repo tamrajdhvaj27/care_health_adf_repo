@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SQLDatabase",
+    "displayName": "HealthCareSQL_DB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "510b9679-4975-acdc-46ba-bf47882058bb"
+  }
+}
