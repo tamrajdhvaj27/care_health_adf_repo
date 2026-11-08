@@ -22,9 +22,10 @@
 
 # PARAMETERS CELL ********************
 
-source_system = 'neon_postgres'
-table_name = 'hospitals'
-landing_timestamp='2026-10-15_12:06:37'
+source_system = 'adls_csv'
+table_name = 'insurance_providers'
+landing_timestamp='2026-10-20_04:14:45'
+source_file_format = "csv"
 
 # METADATA ********************
 
@@ -35,8 +36,22 @@ landing_timestamp='2026-10-15_12:06:37'
 
 # CELL ********************
 
-dfs = spark.read.format("parquet").load(f'abfss://Health_Care_Project@onelake.dfs.fabric.microsoft.com/LH_HealthCareProject.Lakehouse/Files/Landing/{source_system}/{table_name}/data_{landing_timestamp}')
+if source_file_format == "csv":
+    dfs = spark.read.format("csv").option("header","true").option("inferSchema","true").load(f'abfss://Health_Care_Project@onelake.dfs.fabric.microsoft.com/LH_HealthCareProject.Lakehouse/Files/landing/{source_system}/{table_name}/{landing_timestamp}')
+else:
+    dfs = spark.read.format("parquet").load(f'abfss://Health_Care_Project@onelake.dfs.fabric.microsoft.com/LH_HealthCareProject.Lakehouse/Files/landing/{source_system}/{table_name}/data_{landing_timestamp}')
 # display(landing_dfs)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+display(dfs)
 
 # METADATA ********************
 

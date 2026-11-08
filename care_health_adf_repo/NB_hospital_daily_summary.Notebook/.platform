@@ -1,11 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Warehouse",
-    "displayName": "StagingWarehouseForDataflows_20261012113103"
+    "type": "Notebook",
+    "displayName": "NB_hospital_daily_summary",
+    "description": "New notebook"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "ecb1b3fd-39ee-b635-4352-cce85629f74c"
+    "logicalId": "74563d22-69ea-ab8c-49fa-ce2fda5d8f53"
   }
 }

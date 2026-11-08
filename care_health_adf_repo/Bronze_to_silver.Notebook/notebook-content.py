@@ -22,10 +22,10 @@
 
 # PARAMETERS CELL ********************
 
-landing_timestamp = '2026-10-18_12:07:51'
-table_name='patients'
-merge_keys = 'patient_id'
-load_types  = 'MERGE'
+landing_timestamp = '2026-10-20_12:10:51'
+table_name='insurance_providers'
+merge_keys = ''
+load_types  = 'FULL'
 
 # METADATA ********************
 
@@ -37,40 +37,6 @@ load_types  = 'MERGE'
 # CELL ********************
 
 bronze_df = spark.read.table(f"bronze.{table_name}").filter(f"landing_timestamp='{landing_timestamp}'")
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-bronze_df.printSchema()
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-# from pyspark.sql.functions import current_timestamp
-# updated_df = bronze_df.withColumn("insert_timestamp",current_timestamp()).withColumn("updated_timestamp",current_timestamp())
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-# updated_df.write.mode('overwrite').saveAsTable(f'silver.{table_name}')
 
 # METADATA ********************
 
@@ -153,8 +119,9 @@ else:
 
 # CELL ********************
 
+print("[STEP 4] Computing Processed record count")
 record_count = updated_df.count()
-
+print([f'[STEP 4 COMPLETE] Processed record count:{record_count}'])
 mssparkutils.notebook.exit(record_count)
 
 # METADATA ********************
